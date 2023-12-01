@@ -24,7 +24,7 @@ for i in range(n):
             machine = j
 
     T[machine].append(p[i])  # schedule the task on the machine
-print(T)
+
 # calculate the highest completion time
 high = 0
 machine = 0
@@ -53,7 +53,7 @@ model = gp.Model("Min Max C")
 
 # Set a time limit of 5 seconds
 model.setParam('TimeLimit', 5.0)
-
+model.Params.Method = 2
 # Add decision variables
 # Create a 2D binary variable x
 x = model.addVars(n, m, vtype=GRB.BINARY, name="x")
@@ -78,6 +78,12 @@ if model.status == GRB.OPTIMAL:
     # Get the objective value
     objective_value = model.objVal
     print(f"Optimal objective value: {objective_value}")
-  
+
 else:
     print("No solution found")
+
+
+# Set initial values of all x[i, j] variables to 1
+for i in range(n):
+    for j in range(m):
+        x[i, j].Start = 1
