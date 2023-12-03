@@ -1,7 +1,7 @@
 import random as r
 
 
-# Function to see how much butter the applicant is compared to others
+# Function to see how much better the applicant is compared to others
 def Index(list, Applicant):
     count = 0
     for j in range(len(list)):
@@ -48,12 +48,11 @@ for j in range(eps):
         Average = Average_Sum / Count
     Result_Sum += Sum / nr_hired
 
+#testcomment
 print("Greedy average value strategy result: {}".format(Result_Sum/eps))
 
 # Greedy highest value strategy
 Result_Sum = 0
-eps = 1000000
-Average_Multiplier = [5, 4, 3, 2, 1, 0.75, 0.5, 0.25, 0.125, 0.0075]
 for j in range(eps):
     newGame = SecretaryGame()
     highest = 0
