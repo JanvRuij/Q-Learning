@@ -1,6 +1,7 @@
 import gurobipy as gp
 from gurobipy import GRB
 import random as r
+from InstanceGenerator import Tasks
 
 n = 10  # number of tasks
 p = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]  # processing times
@@ -59,3 +60,8 @@ model.optimize()
 objective_value = model.objVal
 print(f"Optimal objective value: {objective_value}")
 
+# start the Q-learnign using new Instances
+newInstance = Tasks(2000, 50)
+newInstance.Greedy(10)
+result = newInstance.ILP_solver()
+print("ILP result{}".format(result))

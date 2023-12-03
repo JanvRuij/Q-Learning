@@ -22,7 +22,7 @@ class SecretaryGame:
 
 # Greedy strategy based on averages
 Result_Sum = 0
-eps = 10000
+eps = 100000
 Average_Multiplier = [5, 4, 3, 2, 1, 0.75, 0.5, 0.25, 0.125, 0.0075]
 for j in range(eps):
     newGame = SecretaryGame()
@@ -83,7 +83,6 @@ print("Greedy highest value strategy result: {}".format(Result_Sum/eps))
 
 # Parameters
 alpha = 0.1
-
 
 # Q-Learning Strategy
 Result_Sum = 0

@@ -5,12 +5,12 @@ from gurobipy import GRB
 
 # Instance generator class
 class Tasks:
-    def __innit__(self):
-        self.n = 2000
-        self.m = 50
+    def __init__(self, n, m):
+        self.n = n
+        self.m = m
         self.p = [r.uniform(0, 10) if r.random() < 0.5
-                  else r.uniform(25, 35) for _ in range(self.n)]
-        self.T = [[0 for _ in range(self.n)] for _ in range(self.m)]
+                  else r.uniform(25, 35) for _ in range(n)]
+        self.T = [[0 for _ in range(self.n)] for _ in range(m)]
 
     def Greedy(self, stopping_criteria):
         # solve the instance using the greedy algorithm
@@ -33,8 +33,9 @@ class Tasks:
     def ILP_solver(self):
         # creating the ilp solver
         model = gp.Model("min max c")
-        # set a time limit of 5 seconds
+        # set parameters
         model.setParam('timelimit', 5.0)
+        model.setParam('OutputFlag', 0)
         model.Params.Method = 2
         # create a 2d binary variable x
         x = model.addVars(self.n, self.m, vtype=GRB.BINARY, name="x")
@@ -43,12 +44,11 @@ class Tasks:
 
         # maximum completion time constraint
         for j in range(self.m):
-            model.addconstr(gp.quicksum(x[i, j] * self.p[i] for
+            model.addConstr(gp.quicksum(x[i, j] * self.p[i] for
                                         i in range(self.n)) <= z)
-
         # schedule each job constraint
         for i in range(self.n):
-            model.addconstr(gp.quicksum(x[i, j] for j in range(self.m)) == 1)
+            model.addConstr(gp.quicksum(x[i, j] for j in range(self.m)) == 1)
 
         # Add the greedy solution as starting values
         for m in range(len(self.T)):
@@ -56,6 +56,7 @@ class Tasks:
                 x[n, m].Start = self.T[m][n]
 
         # set objective function
-        model.setobjective(z, sense=GRB.MINIMIZE)
+        model.setObjective(z, sense=GRB.MINIMIZE)
         # optimize the model
         model.optimize()
+        return model.ObjVal
