@@ -111,9 +111,10 @@ for j in range(eps):
             Sum += value
             nr_hired += 1
             Q[Count][index] = Q[Count][index]*(1-alpha) + value * alpha
-            break
+
         Count += 1
-    Result_Sum += Sum
+    if nr_hired != 0:
+        Result_Sum += Sum/nr_hired
 
 
 print("Q-Learning result: {}".format(Result_Sum/eps))
