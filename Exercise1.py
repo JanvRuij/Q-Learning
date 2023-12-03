@@ -48,7 +48,6 @@ for j in range(eps):
         Average = Average_Sum / Count
     Result_Sum += Sum / nr_hired
 
-#testcomment22
 print("Greedy average value strategy result: {}".format(Result_Sum/eps))
 
 # Greedy highest value strategy
