@@ -10,7 +10,7 @@ class Tasks:
         self.n = n
         self.m = m
         self.p = np.array([r.uniform(0, 10) if r.random() < random
-                           else r.uniform(25, 35) for _ in range(n)])
+                           else r.uniform(500, 600) for _ in range(n)])
         self.T = np.zeros((m, n), dtype=int)
 
     def Greedy(self, stopping_criteria):
@@ -59,5 +59,5 @@ class Tasks:
         model.setObjective(z, sense=GRB.MINIMIZE)
         # optimize the model
         model.optimize()
-        # we want to minimize the gap (scaled for readability)
-        return model.MIPGap * 100
+        # we want to minimize the gap
+        return model.MIPGap

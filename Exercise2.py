@@ -3,7 +3,7 @@ import math
 from gurobipy import GRB
 import random as r
 from InstanceGenerator import Tasks
-
+from tqdm import tqdm
 
 n = 10  # number of tasks
 p = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]  # processing times
@@ -22,7 +22,7 @@ for i in range(n):
             machine = j
 
     T[machine].append(p[i])  # schedule the task on the machine
-
+print(T)
 # calculate the highest completion time
 high = 0
 machine = 0
@@ -66,11 +66,11 @@ print(f"Optimal objective value: {objective_value}")
 # start the Q-learnign using new Instances
 # 10 starting positiion with two options each
 Q = [[float(0), float(0)] for _ in range(10)]
-eps = 100000
+eps = 1000
 alpha = 1
 e = 0.1
 selected = [float(0) for _ in range(10)]
-for _ in range(eps):
+for _ in tqdm(range(eps)):
     random = r.random()
     random2 = r.random()
     # Create a new instance
