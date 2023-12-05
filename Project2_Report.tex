@@ -14,7 +14,7 @@
 \usepackage{booktabs}
 % Title and author information
 \title{Project 2}
-\author{Jan van Ruijven}
+\author{Jan van Ruijven 2006698}
 
 \begin{document}
 
@@ -25,13 +25,13 @@
 The first greedy algorithm implemented is based on the average value of the candidates we have seen. The first candidate is never hired, this is because we cannot calculate the average. For all of the other candidates we compare its value $V_i$ to the average value times some multiplier $M_i$. This multiplier could be optimizated, but in this case it is not. The results for this algorithm can be found in table \ref{tab:greedy-average} in the appendix. An overview of the algorithm itself can be found in the appendix at algorithm \ref{Greedy average}. \\ 
 The second algorithm implemented keeps track of the highest candidate we have seen so far, if the candidate is the highest we have seen, we hire him or her and else not. An overview of the results of this algorithm can be found in table \ref{tab:greedy-highest} in the appendix. An overview of the algorithm itself can be found in the appendix at algorithm \ref{Greedy highest}. 
 \subsection*{2}
-In the Q-learning method implemented will keep track of the n-th highest candidate we have at each state, so in state 1 (the first candidate we see), he or her is always the highest candidate. In state 2 we can be looking at the highest or the lowest candidate, at state 3 there are three diffrent possibilities, the candidate is the highest, the middle one, or the lowest. At state 4, there are 4 possiblities etc. When the Q-learning starts we intialize our states with 0's. When we are running the Q-learning algorithm, each time we hire a candidate i and she is the n'th highest, we update state (i,n). We take the candidate if: $v_i / \max_{i} v_i \geq Q(i, n)$
+In the Q-learning method implemented we will keep track of the n-th highest candidate we have at each state, so in state 1 (the first candidate we see), he or her is always the highest candidate. In state 2 we can be looking at the highest or the lowest candidate, at state 3 there are three diffrent possibilities, the candidate is the highest, the middle one, or the lowest. At state 4, there are 4 possiblities etc. When the Q-learning starts we intialize our states with 0's. When we are running the Q-learning algorithm, each time we hire a candidate i and she is the n'th highest, we update state (i,n). We take the candidate if: $v_i / \max_{i} v_i \geq Q(i, n)$
 \begin{equation}
 	Q(i, n) = Q(i, n) * (1-\alpha) + \alpha * v_i / \max_{i} v_i 	
 	\label{eq:State-Update Ex1}
 \end{equation}
 \subsection*{3}
-The algorithm has been tested for values of alpha ranging form 0.01 to 0.2, the resulting Q-values after 100000 iterations can be found in table \ref{tab:data-Q-learning-hiring} in the appendix. Adding random choises to the algorithm had no effect and using the discount factor gamma would result in a bad outcome. Therefore only the values of alpha have been tested, an over view of effect alpha had over itereations can be found in figure \ref{fig:q-learning-results} in the appendix. As can be seen, the value of alpha does not seem to affect the over result that much. 
+The algorithm has been tested for values of alpha ranging form 0.01 to 0.2, the resulting Q-values after 100000 iterations can be found in table \ref{tab:data-Q-learning-hiring} in the appendix. Adding random choises to the algorithm had no effect and using the discount factor gamma would result in a bad outcome. Therefore only the values of alpha have been tested, an over view of the effect alpha had over itereations can be found in figure \ref{fig:q-learning-results} in the appendix. As can be seen, the value of alpha does not seem to affect the overall results. 
 \subsection*{4}
  The Q-learning strategy does slightly outperform the greedy strategies, as can be seen in table \ref{tab:Q-learning} in the appendix. Even though many of the first decicions made by the agent are completly arbitrarity in the beginning of the training.  
 \subsection*{5}
@@ -57,13 +57,13 @@ The following instance takes more than 5 seconds to reach optimality: 2000 tasks
 \subsection*{3}
 The stopping criterion is equal to the number of jobs that we wish to initialize with the greedy heuristic. For example, if we have 2000 jobs and we wish initialize the longest 10\% of jobs with the greedy heuristic, we set the stopping criterion equal to 200, meaning that once we have given the first 200 highest jobs to the machines, we stop and initialize the ILP-solver with the pre-assigned jobs. For the Q-learning, there are 10 diffrent states, each corresponding to the size of the jobs in the instance, the idea is that an instance with larger jobs, would need more pre-processing and vice versa. In each state there are two possiblities, either we pre-process 10\% of the longest jobs, or we pre-process with 2.5\% of the highest jobs. After this decision, we end up in the final state, which is where the ILP-solver will do the rest of the work. This final state will return the MIP-gap, this is because we are dealing with random instances, some of them will have more large processing times than others. Since the MIP-gap should be as low as possible, our agent will take the lowest option of the two. To make sure our agent tries out every option, the epsilon parameter is set to 0.1, such that 10\% of the time we take a completly random option. The states are initialized with 0's.  
 \subsection*{4}
-The following instances are created to train our agent: 2000 jobs, 50 machines, there are large jobs wich are uniformly distributed from 500 to 600 and there are small jobs uniformly distributed between 0 and 10. The amount of large jobs is decided by taking a random number between 0 and 1, if this random number equal 0.4 for example, this would mean that around 40\% of the jobs are small, and 60\% of the jobs are large.  
+The following instances are created to train our agent: 2000 jobs, 50 machines, there are large jobs which are uniformly distributed from 500 to 600 and there are small jobs uniformly distributed between 0 and 10. The amount of large jobs is decided by taking a random number between 0 and 1, if this random number equals 0.4 for example, this would mean that around 40\% of the jobs are small, and 60\% of the jobs are large.  
 \subsection*{5}
-The training results can be found in table \ref{tab: Hybrid Q-table} in the appendix. The epsilon value was chosen because blabla.
+The training results can be found in table \ref{tab: Hybrid Q-table} in the appendix. For the parameters of the agent a decreasing alpha was chosen, this was to make sure that the Q-values would slowly converge, instead of slowly diverging to infinity. An epsilon value of 0.1 was chosen to make sure that every possible action would be taken atleast once. 
 \subsection*{6}
-The hybid appreach does seem to improve the ILP solver so very good blabla.
+As can be seen in table \ref{tab:completion_times} in the appendix, the greedy heuristic outperforms both the ILP-solver and the improved heuristic for 50\% small and 50\% large jobs. If we look at table \ref{tab:completion_times_large} in the appendix, the ILP-solver outperforms the greedy and the Improved heuristic, indicating that the pre-processing has had a negative effect on the ILP-solver. 
 \subsection*{7}
-No real strategy can be found, maybe need more time to train.
+It looks like smaller jobs sizes require a smaller pre-processing, as can be seen by looking at the first 3 state results in table \ref{tab: Hybrid Q-table} in the appendix. The agent was trained for 1000 episodes, this needs to be increased by tenfolds to make sure that the agent has had enough time to train. However, it is visible that larger jobs lead to a larger MIP-gap, therefore making it harder for the ILP-solver to find the optimal solution.
 \newpage
 \begin{appendices}
 \section*{Algorithms}
@@ -195,11 +195,40 @@ State & MIP-gap 2.5\% & MIP-gap 10\% \\
 \end{tabular}
 \end{table}
 
+\begin{table}[ht]
+\centering
+\begin{tabular}{lcc}
+\toprule
+Heuristc & Max Completion time  \\ 
+\midrule
+Greedy             & 11620     \\     
+ILP           & 11666         \\ 
+Improved       & 111677        \\ 
+\bottomrule
+\end{tabular}
+\caption{Maximum completion times for 50\% large and 50\% small jobs}
+\label{tab:completion_times}
+\end{table}
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{lccc}
+\toprule
+Heuristic & Max Completion Time \\
+\midrule
+Greedy & 20324 \\
+ILP & 20084 \\
+Improved & 20163\\
+\bottomrule
+\end{tabular}
+\caption{Maximum completion times for 90\% large and 10\% small jobs}
+\label{tab:completion_times_large}
+\end{table}
 \newpage
 \section*{Figures}
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering
-    \includegraphics[width=\linewidth]{Q_learning_results.png}
+    \includegraphics[width=100mm]{Q_learning_results.png}
     \caption{Q-learning Results}
     \label{fig:q-learning-results}
 \end{figure}

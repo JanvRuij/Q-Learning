@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1701718263 "Project2_Report.tex" "Project2_Report.pdf" "Project2_Report" 1701718265 0
+["pdflatex"] 1701773153 "Project2_Report.tex" "Project2_Report.pdf" "Project2_Report" 1701773154 0
   "/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/jknappen/ec/ecbx1000.tfm" 1136768653 3584 2d666ecf6d466d8b007246bc2f94d9da ""
@@ -157,8 +157,8 @@
   "/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1699545999 4623355 b8cad38412faebe1ce5b780a45db67bd ""
   "/usr/local/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt" 1699545853 7883453 a3daf8b8b16f90ebf2bc796ca01e6c64 ""
   "/usr/local/texlive/2023/texmf.cnf" 1678822455 577 1b2b1af17af2508fb20dd85783af4050 ""
-  "Project2_Report.aux" 1701718264 1761 0c9116ade4378019dda21fcec8ac3f03 "pdflatex"
-  "Project2_Report.tex" 1701718263 10254 0ad88fcac3da0bc69998393277da279d ""
+  "Project2_Report.aux" 1701773154 2169 6e8b69120d71de0f054949dd0c509335 "pdflatex"
+  "Project2_Report.tex" 1701773150 11854 6497b2803033c4c3701e350f1c696278 ""
   "Q_learning_results.png" 1701706865 24993 292ee2da59394932bbb170230c0725a5 ""
   (generated)
   "Project2_Report.aux"
